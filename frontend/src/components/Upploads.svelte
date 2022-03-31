@@ -2,7 +2,7 @@
 </script>
 
 <div class="feed">
-  <div style="background-image: url(C:\Users\soma.szabo\Pictures/karat.jpg);" />
+  <div style="background-image: url(/karat.jpg);" />
   <div />
   <div />
   <div />
@@ -28,6 +28,8 @@
   .feed div {
     width: 100%;
     height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
     background-color: #d6a7bd;
   }
 
