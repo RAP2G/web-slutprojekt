@@ -1,16 +1,20 @@
-import cors from "cors"
-import express from "express"
-import morgan from "morgan"
+import express from "express";
+const app = express();
 
-const app = express()
-app.use(cors())
-app.use(express.json())
-app.use(morgan("dev"))
 
-app.post("/test",async (req, res) => {
-    const post = req.body
-    console.log(post);
+const server = async ()=>{
+
+    const port = 5000; // default port to listen
+
+    // define a route handler for the default home page
+    app.get( "/", ( req:any, res:any ) => {
+        res.send( "Hello world!" );
+    } );
     
-})
-
-app.listen(3000)
+    // start the Express server
+    app.listen( port, () => {
+        console.log( `server started at http://localhost:${ port }` );
+    } );
+    
+} 
+export default server;
