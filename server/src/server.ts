@@ -1,10 +1,10 @@
-import express from "express";
+import express, {Request,Response} from "express";
 const app = express();
 
 
 const server = async ()=>{
 
-    const port = process.env.SERVER_PORT || 5000; // default port to listen
+     // default port to listen
 
     // define a route handler for the default home page
     app.get( "/", ( req:any, res:any ) => {
@@ -12,6 +12,8 @@ const server = async ()=>{
     } );
     
     // start the Express server
+    const port = process.env.SERVER_PORT || 666;
+
     app.listen( port, () => {
         console.log( `server started at http://localhost:${ port }` );
     } );

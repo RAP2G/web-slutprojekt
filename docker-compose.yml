@@ -6,6 +6,8 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - "${SERVER_PORT}:${SERVER_PORT}"
+    volumes:
+      - ./server:/server
     depends_on:
       - db
     env_file: .env
