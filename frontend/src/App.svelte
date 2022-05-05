@@ -1,21 +1,39 @@
 <script lang="ts">
-  import Upploads from "./components/Upploads.svelte";
+  import Upploads from "./components/Uploads.svelte";
   import Button from "./components/Button.svelte";
+  let fileVar: FileList;
+  let textTest = "Hello";
+  let submit = async () => {
+    let formData = new FormData();
+    console.log(fileVar);
+    console.log(textTest);
 
-  let submit = () => {
-    console.log("Hello!");
+    formData.append("files", fileVar[0]);
+    // /formData.append("text", textTest);
+
+    for (var key of formData.entries()) {
+      console.log(key[0] + ", " + key[1]);
+    }
+
+    const res = await fetch("http://localhost:666/upload", {
+      method: "POST",
+      body: formData as FormData,
+    }).then();
+
+    console.log(res);
   };
 </script>
 
 <main>
   <h1>Welcome to the Picture Zone!</h1>
   <p>Uppload a picture to see it in the feed below!</p>
-  <form class="form" action="">
+  <form class="form">
     <label class="file-upload-label" for="file-upload"
       >Click here to uppload a picture</label
     >
-    <input id="file-upload" type="file" />
-    <Button text="Submit" onClick={submit} />
+    <input id="file-upload" type="file" bind:files={fileVar} />
+    <input type="text" id="textTest" bind:value={textTest} />
+    <Button text={"Submit"} onClick={submit} />
   </form>
   <br />
 
@@ -23,6 +41,12 @@
 </main>
 
 <style>
+  .button {
+    background-color: #ff6734;
+    color: white;
+    border: none;
+  }
+
   .file-upload-label {
     border: none;
     border: 1px solid #ccc;
