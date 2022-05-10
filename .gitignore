@@ -1,4 +1,5 @@
 *pg_data
+post/
 # Logs
 logs
 *.log

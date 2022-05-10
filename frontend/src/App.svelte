@@ -2,11 +2,10 @@
   import Upploads from "./components/Uploads.svelte";
   import Button from "./components/Button.svelte";
   let fileVar: FileList;
-  let textTest = "Hello";
+  let backendPort = 5000;
   let submit = async () => {
     let formData = new FormData();
     console.log(fileVar);
-    console.log(textTest);
 
     formData.append("files", fileVar[0]);
     // /formData.append("text", textTest);
@@ -15,11 +14,10 @@
       console.log(key[0] + ", " + key[1]);
     }
 
-    const res = await fetch("http://localhost:666/upload", {
+    const res = await fetch(`http://localhost:${backendPort}/upload`, {
       method: "POST",
       body: formData as FormData,
-    }).then();
-
+    });
     console.log(res);
   };
 </script>
@@ -32,21 +30,14 @@
       >Click here to uppload a picture</label
     >
     <input id="file-upload" type="file" bind:files={fileVar} />
-    <input type="text" id="textTest" bind:value={textTest} />
     <Button text={"Submit"} onClick={submit} />
   </form>
   <br />
 
-  <Upploads />
+  <Upploads {backendPort} />
 </main>
 
 <style>
-  .button {
-    background-color: #ff6734;
-    color: white;
-    border: none;
-  }
-
   .file-upload-label {
     border: none;
     border: 1px solid #ccc;
