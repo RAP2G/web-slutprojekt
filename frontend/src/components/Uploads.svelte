@@ -46,14 +46,6 @@
     /* grid-auto-rows: minmax(50px, auto); */
   }
 
-  .wide {
-    grid-column: span 2;
-  }
-
-  .tall {
-    grid-row: span 2;
-  }
-
   /* .feed div {
     width: 100%;
     height: 200px;
