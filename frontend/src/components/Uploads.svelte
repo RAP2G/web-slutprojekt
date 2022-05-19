@@ -22,6 +22,10 @@
     posts = await getFeed();
     console.log(posts);
   })();
+
+  setInterval(async () => {
+    posts = await getFeed();
+  }, 10000);
 </script>
 
 <div class="feed">
