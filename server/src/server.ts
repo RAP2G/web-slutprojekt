@@ -6,17 +6,20 @@ import path from "path"
 import postRouter from "./routes/post";
 const prisma = new PrismaClient()
 const app = express();
+// Sätter en limit på hur stora bilderna får vara
 app.use(fileupload({
-    limits: { fileSize: 50 * 1024 * 1024 }, // ~~52Mb5
+    limits: { fileSize: 50 * 1024 * 1024 }, // ~~52Mb
           responseOnLimit: 'File size is too big',
           abortOnLimit: true,
           preserveExtension: true,
+
 }))
+        app.use(cors())
 const server = async ()=>{
-    app.use(cors())
     app.get( "/", ( req:Request, res:Response ) => {
         res.send( "Hello world!" );
     } );
+    // Skapar en feed route som frontend använder för att hämta alla poster
     app.get("/feed", async(req:Request, res:Response)=>{
         const  feed = await prisma.post.findMany()
         
@@ -24,7 +27,7 @@ const server = async ()=>{
     })
 
     
-    
+    // Skapar routen där frontend laddar upp bilderna
     app.post("/upload",  async(req:Request, res:Response)=>{
         console.log(req.files.files);
         
@@ -51,8 +54,6 @@ const server = async ()=>{
         
 
     })
-        // start the Express server
-
         app.get('/posts/:id', (req:Request, res:Response) => {
             const { id } = req.params;
           
