@@ -1,4 +1,4 @@
-import {PrismaClient, Prisma, Post } from "@prisma/client";
+import { PrismaClient } from '@prisma/client'
 import express, {Request,Response} from "express";
 import fileupload, { UploadedFile } from 'express-fileupload'
 import cors from 'cors'
@@ -17,8 +17,6 @@ const server = async ()=>{
     app.get( "/", ( req:Request, res:Response ) => {
         res.send( "Hello world!" );
     } );
-    // app.use('/upload', postRouter)
-    // app.use
     app.get("/feed", async(req:Request, res:Response)=>{
         const  feed = await prisma.post.findMany()
         

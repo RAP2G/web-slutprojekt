@@ -8,7 +8,7 @@
   }
 
   let posts: IPost[] = [];
-
+  // Ber backend om alla poster i databasen
   const getFeed = async () => {
     const res = await window
       .fetch(`http://localhost:${backendPort}/feed`, {
@@ -29,6 +29,7 @@
 </script>
 
 <div class="feed">
+  <!-- Om det finns poster det skapar en div element för varje -->
   {#if posts.length > 0}
     {#each posts as post}
       <div
@@ -46,13 +47,7 @@
     /* grid-auto-rows: minmax(50px, auto); */
   }
 
-  /* .feed div {
-    width: 100%;
-    height: 200px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #d6a7bd;
-  } */
+  /* Ändrar antalet kolumner som gridene består av beroende på bredden av skärmen*/
 
   @media only screen and (max-width: 1920px) {
     .feed {

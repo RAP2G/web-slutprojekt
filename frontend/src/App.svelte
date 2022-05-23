@@ -1,14 +1,16 @@
 <script lang="ts">
+  // Importerar componenterna
   import Upploads from "./components/Uploads.svelte";
   import Button from "./components/Button.svelte";
   let fileVar: FileList;
   let backendPort = 5000;
+
+  // Funktion för att skicka data till servern
   let submit = async () => {
     let formData = new FormData();
     console.log(fileVar);
 
     formData.append("files", fileVar[0]);
-    // /formData.append("text", textTest);
 
     for (var key of formData.entries()) {
       console.log(key[0] + ", " + key[1]);
